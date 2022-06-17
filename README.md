@@ -1,7 +1,7 @@
 # Go container
 
 <p align="center">
-<a href=""><img src="https://miro.medium.com/max/880/1*136qhXxInh44-pWrPrkLTw.png" align="center" height="381" width="386" ></a>
+<a href=""><img src="https://miro.medium.com/max/880/1*136qhXxInh44-pWrPrkLTw.png" align="center" height="321" width="326" ></a>
 </p>
 
 
