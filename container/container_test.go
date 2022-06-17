@@ -64,8 +64,11 @@ func (suite *ContainerTestSuite) TestPostgresContainer() {
 		ExposedPorts: []string{"5432"},
 	})
 
+	port := dockerContainer.resource.GetPort("5432/tcp")
+	suite.NotEmpty(port)
+
 	err := dockerContainer.pool.Retry(func() error {
-		db, err := sql.Open("postgres", fmt.Sprintf("postgres://postgres:secret@localhost:%s/postgres?sslmode=disable", dockerContainer.resource.GetPort("5432/tcp")))
+		db, err := sql.Open("postgres", fmt.Sprintf("postgres://postgres:secret@localhost:%s/postgres?sslmode=disable", port))
 		if err != nil {
 			return err
 		}
