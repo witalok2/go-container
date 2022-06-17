@@ -36,10 +36,10 @@ func (suite *ContainerTestSuite) TestMongoContainer() {
 		Cmd:          []string{"mongod", "--smallfiles", "--port", "3000"},
 	})
 
-	port := dockerContainer.resource.GetPort("3000/tcp")
+	port := dockerContainer.Resource.GetPort("3000/tcp")
 	suite.NotEmpty(port)
 
-	err := dockerContainer.pool.Retry(func() error {
+	err := dockerContainer.Pool.Retry(func() error {
 		response, err := http.Get(fmt.Sprintf("http://127.0.0.1:%s", port))
 		if err != nil {
 			return err
@@ -64,10 +64,10 @@ func (suite *ContainerTestSuite) TestPostgresContainer() {
 		ExposedPorts: []string{"5432"},
 	})
 
-	port := dockerContainer.resource.GetPort("5432/tcp")
+	port := dockerContainer.Resource.GetPort("5432/tcp")
 	suite.NotEmpty(port)
 
-	err := dockerContainer.pool.Retry(func() error {
+	err := dockerContainer.Pool.Retry(func() error {
 		db, err := sql.Open("postgres", fmt.Sprintf("postgres://postgres:secret@localhost:%s/postgres?sslmode=disable", port))
 		if err != nil {
 			return err
@@ -84,9 +84,9 @@ func (suite *ContainerTestSuite) TestRedisContainer() {
 		ExposedPorts: []string{"6379/tcp"},
 	})
 
-	err := dockerContainer.pool.Retry(func() error {
+	err := dockerContainer.Pool.Retry(func() error {
 		rd := redis.NewClient(&redis.Options{
-			Addr: dockerContainer.resource.Container.NetworkSettings.IPAddress + ":6379",
+			Addr: dockerContainer.Resource.Container.NetworkSettings.IPAddress + ":6379",
 		})
 
 		err := rd.Ping().Err()

@@ -9,8 +9,8 @@ import (
 )
 
 type Container struct {
-	pool     *dockertest.Pool     // API connection to host docker
-	resource *dockertest.Resource // The docker container
+	Pool     *dockertest.Pool     // API connection to host docker
+	Resource *dockertest.Resource // The docker container
 }
 
 func NewContainer(runOptions dockertest.RunOptions) *Container {
@@ -37,7 +37,7 @@ func NewContainer(runOptions dockertest.RunOptions) *Container {
 	}
 
 	return &Container{
-		pool: pool,
-		resource: resource,
+		Pool: pool,
+		Resource: resource,
 	}
 }
