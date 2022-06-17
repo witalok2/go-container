@@ -21,7 +21,7 @@ type PostgresContainer struct {
 	postgresDB *pgxpool.Pool
 }
 
-func NewContainerPostgres() *PostgresContainer {
+func NewPostgresContainer() *PostgresContainer {
 	url := &url.URL{
 		Scheme:      "postgres",
 		User:        url.UserPassword("myuser", "secret"),

@@ -6,7 +6,7 @@ import (
 )
 
 func TestPostgres(t *testing.T) {
-	pgsql := NewContainerPostgres()
+	pgsql := NewPostgresContainer()
 	pgsql.RunMigrations("../test/scripts/migrations")
 	pgsql.ExecuteSQLFile("../test/scripts/testdata/testdata.sql")
 
