@@ -7,7 +7,7 @@
 
 Run test 
 ```sh
-	run 'make test'
+run 'make test'
 ```
 
 ### 📋 Prerequisites
