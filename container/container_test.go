@@ -36,6 +36,8 @@ func (suite *ContainerTestSuite) TestMongoContainer() {
 		Cmd:          []string{"mongod", "--smallfiles", "--port", "3000"},
 	})
 
+	defer dockerContainer.Pool.Purge(dockerContainer.Resource)
+
 	port := dockerContainer.Resource.GetPort("3000/tcp")
 	suite.NotEmpty(port)
 
@@ -64,6 +66,8 @@ func (suite *ContainerTestSuite) TestPostgresContainer() {
 		ExposedPorts: []string{"5432"},
 	})
 
+	defer dockerContainer.Pool.Purge(dockerContainer.Resource)
+
 	port := dockerContainer.Resource.GetPort("5432/tcp")
 	suite.NotEmpty(port)
 
@@ -81,8 +85,10 @@ func (suite *ContainerTestSuite) TestRedisContainer() {
 	dockerContainer := NewContainer(dockertest.RunOptions{
 		Repository:   "redis",
 		Env:          []string{},
-		ExposedPorts: []string{"6379/tcp"},
+		ExposedPorts: []string{"6379"},
 	})
+
+	defer dockerContainer.Pool.Purge(dockerContainer.Resource)
 
 	err := dockerContainer.Pool.Retry(func() error {
 		rd := redis.NewClient(&redis.Options{

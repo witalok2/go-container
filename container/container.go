@@ -28,7 +28,7 @@ func NewContainer(runOptions dockertest.RunOptions) *Container {
 
 	resource, err := pool.RunWithOptions(&runOptions)
 	if err != nil {
-		logger.WithError(err).Fatal("could not start postgres container")
+		logger.WithError(err).Fatal("could not start container")
 	}
 
 	err = resource.Expire(30 * 60)
@@ -37,7 +37,7 @@ func NewContainer(runOptions dockertest.RunOptions) *Container {
 	}
 
 	return &Container{
-		Pool: pool,
+		Pool:     pool,
 		Resource: resource,
 	}
 }
