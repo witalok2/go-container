@@ -11,7 +11,7 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/ory/dockertest/v3"
 	logger "github.com/sirupsen/logrus"
-	container "github.com/witalok2/go-container/container"
+	"github.com/witalok2/go-container/container"
 )
 
 type PostgresContainer struct {
