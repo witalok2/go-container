@@ -18,7 +18,7 @@ run 'make test'
 Tools: 
 - [Golang](https://golang.org/doc/install)
 
-### Por que devo usar?
+### Why should I use?
 Use Docker to run your Golang integration tests on 3rd party services on Microsoft Windows, Mac OSX and Linux!
 
 When developing applications, it is often necessary to use services that communicate with a database system or even a redis. Unit testing these services can be tricky because simulating database/DBAL is strenuous. Making small changes to the schema entails rewriting at least some if not all of the mocks. The same goes for API changes in DBAL. To avoid this, it is smarter to test these specific services against a real database which is destroyed after testing. Docker is the perfect system for running unit tests as you can launch containers in a few seconds and kill them when the test is complete. The Dockertest library provides easy-to-use commands to launch Docker containers and use them for your tests.
