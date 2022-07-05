@@ -68,7 +68,7 @@ func (suite *ContainerTestSuite) TestPostgresContainer() {
 
 	defer dockerContainer.Pool.Purge(dockerContainer.Resource)
 
-	port := dockerContainer.Resource.GetPort("5432/tcp")
+	port := dockerContainer.Resource.GetPort("5432")
 	suite.NotEmpty(port)
 
 	err := dockerContainer.Pool.Retry(func() error {
